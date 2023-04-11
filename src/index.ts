@@ -3,9 +3,9 @@ import axios from 'axios'
 
 
 const API_key = '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'
-const question = 'How can I extract files from PS4 .pkg archive?'
 
-const app = async () => {
+
+const askChatGPT = async (question: string): Promise<string> => {
   try {
     // const configuration = new Configuration({
     //   organization: "org-fDJjPCtQclVN4eKxpRiEOZr9",
@@ -27,11 +27,11 @@ const app = async () => {
         "Authorization": `Bearer ${API_key}`,
       }
     })
-    console.log(response.data.choices[0].message.content)
+    // console.log(response.data.choices[0].message.content)
+    return response.data.choices[0].message.content
   } catch (err) {
-    console.log(err.response.data.error)
+    // console.log(err.response.data.error)
+    return JSON.stringify(err.response.data.error)
   }
 }
 
-
-app()
